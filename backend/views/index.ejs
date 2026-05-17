@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to bottom right,
+                #c7d2fe,
+                #ffffff,
+                #e9d5ff);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 420px;
+        background: white;
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+        background: #4f46e5;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0 auto 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #1f2937;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 16px;
+        outline: none;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    .form input:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .form button {
+        padding: 14px;
+        border: none;
+        border-radius: 16px;
+        background: #4f46e5;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .form button:hover {
+        background: #4338ca;
+    }
+
+    .message {
+        text-align: center;
+        color: green;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+
+    <form class="form">
+        <input class="newpassword" type="text" placeholder="new password">
+        <input class="confirmpassword" type="text" placeholder="confirm password">
+        <button>submit</button>
+        <p class="message"></p>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let newpassword = document.querySelector(".newpassword")
+        let confirmpassword = document.querySelector(".confirmpassword")
+        let form = document.querySelector(".form")
+        let message = document.querySelector(".message")
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault()
+            let data = {
+                newpassword: newpassword.value,
+                id: "<%= id %>"
+            }
+            if (newpassword.value === confirmpassword.value) {
+                let res = await axios.post("http://localhost:3000/api/auth/set-password", data)
+                console.log(res)
+                newpassword.value = ""
+                confirmpassword.value = ""
+                message.innerText = "Password changed succesfully";
+            } else {
+                message.innerText = "Passwords do not match";
+            }
+        })
+    </script>
+</body>
+
+</html>
