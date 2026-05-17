@@ -9,7 +9,6 @@ import Register from "../../features/auth/components/Register";
 import Authlayout from "../../layouts/Authlayout";
 import Publiclayout from "../../layouts/Publiclayout";
 import Dashboard from "../../layouts/Dashboard";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteUser, setUser } from "../slices/AuthSlice";
 import ProtectedRoute from "./ProtectedRoute";
@@ -21,6 +20,7 @@ import Forget from "./Forget";
 import Journal from "../../features/Journal/components/Journal";
 import EntryDetails from "./EntryDetails";
 import SearchRoute from "./SearchRoute";
+import { axiosInstance } from "../config/axiosInstance";
 
 const AppRouter = () => {
   let dispatch = useDispatch();
@@ -33,9 +33,7 @@ const AppRouter = () => {
   };
   let meApi = async () => {
     try {
-      let { data } = await axios.get("http://localhost:3000/api/auth/me", {
-        withCredentials: true,
-      });
+      let { data } = await axiosInstance.get("/auth/me");
       dispatch(setUser(data?.data));
     } catch (error) {
       console.log(error);
