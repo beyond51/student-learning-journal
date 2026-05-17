@@ -10,7 +10,7 @@ let app = express();
 app.set("view engine", "ejs");
 app.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: process.env.ORIGIN || "http://localhost:5173",
     credentials: true,
   }),
 );

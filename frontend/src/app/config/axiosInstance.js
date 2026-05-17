@@ -6,17 +6,13 @@ export let axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.response.use(
-  // success
   (response) => {
     return response;
   },
 
-  // error
   (error) => {
-    // backend error message
     const message = error?.response?.data?.message || "Something went wrong";
 
-    // attach clean message
     return Promise.reject(message);
   },
 );

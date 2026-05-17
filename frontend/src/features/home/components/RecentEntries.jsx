@@ -29,7 +29,6 @@ const RecentEntries = ({ openEntryDetailsFn }) => {
           <div>Action</div>
         </div>
 
-        {/* Loading */}
         {isPending ? (
           <div className="w-full flex items-center justify-center py-16 gap-3">
             <div className="w-8 h-8 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
@@ -42,14 +41,11 @@ const RecentEntries = ({ openEntryDetailsFn }) => {
                 key={entry._id}
                 className="border border-gray-200 rounded-2xl p-4 md:p-5 hover:bg-gray-50 transition-all duration-200"
               >
-                {/* Desktop / Tablet */}
                 <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_120px] gap-4 items-center">
-                  {/* Topic */}
                   <div className="min-w-0">
                     <p className="font-semibold truncate">{entry.topic}</p>
                   </div>
 
-                  {/* Difficulty */}
                   <div>
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs lg:text-sm font-medium ${
@@ -64,17 +60,14 @@ const RecentEntries = ({ openEntryDetailsFn }) => {
                     </span>
                   </div>
 
-                  {/* Duration */}
                   <div className="text-sm lg:text-base">
                     {entry.duration} hrs
                   </div>
 
-                  {/* Date */}
                   <div className="text-gray-500 text-sm lg:text-base truncate">
                     {entry.date}
                   </div>
 
-                  {/* Action */}
                   <div>
                     <button
                       onClick={() => openEntryDetailsFn(entry)}
@@ -85,9 +78,7 @@ const RecentEntries = ({ openEntryDetailsFn }) => {
                   </div>
                 </div>
 
-                {/* Mobile */}
                 <div className="md:hidden flex flex-col gap-4">
-                  {/* Top */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-gray-500 mb-1">Topic</p>
@@ -110,7 +101,6 @@ const RecentEntries = ({ openEntryDetailsFn }) => {
                     </span>
                   </div>
 
-                  {/* Middle */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs text-gray-500">Duration</p>
@@ -129,7 +119,6 @@ const RecentEntries = ({ openEntryDetailsFn }) => {
                     </div>
                   </div>
 
-                  {/* Button */}
                   <button
                     onClick={() => openEntryDetailsFn(entry)}
                     className="w-full py-2.5 rounded-xl bg-black text-white font-medium active:scale-[0.98] transition"

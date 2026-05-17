@@ -53,7 +53,11 @@ const registerController = asyncHandler(async (req, res) => {
 
   let token = student.generatejwt();
 
-  res.cookie("token", token);
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
 
   sendEmailto(
     studentEmail,
@@ -81,7 +85,11 @@ const loginController = asyncHandler(async (req, res) => {
   }
 
   let token = isexisted.generatejwt();
-  res.cookie("token", token);
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
 
   if (checkpass) {
     res
